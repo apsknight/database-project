@@ -3,26 +3,13 @@ const users = express.Router()
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
-const flash = require('express-flash-notification');
-const session = require('express-session');
 
 const User = require("../models/User")
 users.use(cors())
-users.use(session({
-    name: 'example',
-    secret: 'shuush',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      path: '/',
-      httpOnly: true,
-      secure: false,
-      expires: new Date('Monday, 18 January 2028')
-    },
-  }))
-users.use(flash(users));
 
 process.env.SECRET_KEY = 'secret'
+
+User.sync()
 
 users.post("/register", (req, res) => {
     const today = new Date()

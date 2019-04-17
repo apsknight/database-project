@@ -91,4 +91,3 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import url(../../css/login.css);
 </style>
-

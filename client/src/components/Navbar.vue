@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import EventBus from './EventBus'
+import EventBus from '../views/EventBus'
 
 EventBus.$on('logged-in', test => {
   console.log(test)
