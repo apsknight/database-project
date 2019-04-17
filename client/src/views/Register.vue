@@ -1,49 +1,88 @@
 <template>
-<main class="login-form">
-    <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Register</div>
-                    <div class="card-body">
-                        <form action="" method="" v-on:submit.prevent="register">
-                            <div class="form-group row">
-                                <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="first_name" v-model="first_name" class="form-control" name="first_name" required autofocus>
+    <section class="section section-shaped section-lg my-0">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <card type="secondary" shadow
+                          header-classes="bg-white pb-5"
+                          body-classes="px-lg-5 py-lg-5"
+                          class="border-0">
+                        <template>
+                            <div class="text-muted text-center mb-3">
+                                <small>Sign in with</small>
+                            </div>
+                            <div class="btn-wrapper text-center">
+                                <base-button type="neutral">
+                                    <img slot="icon" src="img/icons/common/github.svg">
+                                    Github
+                                </base-button>
+
+                                <base-button type="neutral">
+                                    <img slot="icon" src="img/icons/common/google.svg">
+                                    Google
+                                </base-button>
+                            </div>
+                        </template>
+                        <template>
+                            <div class="text-center text-muted mb-4">
+                                <small>Or sign up with credentials</small>
+                            </div>
+                            <form role="form">
+                                <base-input alternative
+                                            class="mb-3"
+                                            placeholder="First Name"
+                                            v-model="first_name"
+                                            addon-left-icon="ni ni-hat-3">
+                                </base-input>
+                                 <base-input alternative
+                                            class="mb-3"
+                                            placeholder="Last Name"
+                                            v-model="last_name"
+                                            addon-left-icon="ni ni-hat-3">
+                                </base-input>
+                                <base-input alternative
+                                            class="mb-3"
+                                            placeholder="Email"
+                                            v-model="email"
+                                            addon-left-icon="ni ni-email-83">
+                                </base-input>
+                                <base-input alternative
+                                            type="password"
+                                            v-model="password"
+                                            placeholder="Password"
+                                            addon-left-icon="ni ni-lock-circle-open">
+                                </base-input>
+                                <div class="text-muted font-italic">
+                                    <small>password strength:
+                                        <span class="text-success font-weight-700">strong</span>
+                                    </small>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="last_name" v-model="last_name" class="form-control" name="last_name" required autofocus>
+                                <base-checkbox>
+                                    <span>I agree with the
+                                        <a href="#">Privacy Policy</a>
+                                    </span>
+                                </base-checkbox>
+                                <div class="text-center">
+                                    <base-button type="primary" class="my-4" @finished="finished">Create account</base-button>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="email" v-model="email" class="form-control" name="email" required autofocus>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                <div class="col-md-6">
-                                    <input type="text" id="password" v-model="password" class="form-control" name="password" required autofocus>
-                                </div>
-                            </div>
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                    </form>
-                    </div>
+                            </form>
+                        </template>
+                    </card>
                 </div>
             </div>
         </div>
-    </div>
-
-</main>
+    </section>
+</template>
 </template>
 
   
@@ -62,7 +101,7 @@ export default {
   },
 
   methods: {
-    register () {
+    finished () {
       axios.post('/users/register',
         {
           first_name: this.first_name,
