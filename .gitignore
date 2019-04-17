@@ -4,6 +4,13 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
+lerna-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+=======
+>>>>>>> f58cc8929c5f0ae7af9c4b5cc4702c0f248a1246
 
 # Runtime data
 pids
@@ -20,7 +27,11 @@ coverage
 # nyc test coverage
 .nyc_output
 
+<<<<<<< HEAD
+# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
+=======
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+>>>>>>> f58cc8929c5f0ae7af9c4b5cc4702c0f248a1246
 .grunt
 
 # Bower dependency directory (https://bower.io/)
@@ -56,6 +67,31 @@ typings/
 
 # dotenv environment variables file
 .env
+<<<<<<< HEAD
+.env.test
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
 
 # next.js build output
 .next
+
+# nuxt.js build output
+.nuxt
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+=======
+
+# next.js build output
+.next
+>>>>>>> f58cc8929c5f0ae7af9c4b5cc4702c0f248a1246
