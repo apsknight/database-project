@@ -1,55 +1,85 @@
 <template>
-  <main class="login-form">
-    <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Log in</div>
-                    <div class="card-body">
-                        <form action="" method="" v-on:submit.prevent="login">
-                            <div class="form-group row">
-                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input type="email" id="email_address" v-model="email" class="form-control" name="email-address" required autofocus>
-                                </div>
+    <section class="section section-shaped section-lg my-0">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="container pt-lg-md">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <card type="secondary" shadow
+                          header-classes="bg-white pb-5"
+                          body-classes="px-lg-5 py-lg-5"
+                          class="border-0">
+                        <template>
+                            <div class="text-muted text-center mb-3">
+                                <small>Sign in with</small>
                             </div>
+                            <div class="btn-wrapper text-center">
+                                <base-button type="neutral">
+                                    <img slot="icon" src="img/icons/common/github.svg">
+                                    Github
+                                </base-button>
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" v-model="password" class="form-control" name="password" required>
+                                <base-button type="neutral">
+                                    <img slot="icon" src="img/icons/common/google.svg">
+                                    Google
+                                </base-button>
+                            </div>
+                        </template>
+                        <template>
+                            <div class="text-center text-muted mb-4">
+                                <small>Or sign in with credentials</small>
+                            </div>
+                            <form role="form" v-on:submit.prevent="login" >
+                                <base-input alternative
+                                            class="mb-3"
+                                            placeholder="Email"
+                                            v-model = "email"
+                                            @input = "email"
+                                            addon-left-icon="ni ni-email-83">
+                                </base-input>
+                                <base-input alternative
+                                            type="password"
+                                            v-model = "password"
+                                            placeholder="Password"
+                                            @input = "password"
+                                            addon-left-icon="ni ni-lock-circle-open">
+                                </base-input>
+                                <base-checkbox>
+                                    Remember me
+                                </base-checkbox>
+                                <div class="text-center">
+                                    <base-button type="primary" class="my-4" @finished = "finished" >Sign In</base-button>
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember"> Remember Me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Log in
-                                </button>
-                                <a href="#" class="btn btn-link">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                    </form>
+                            </form>
+                        </template>
+                    </card>
+                    <div class="row mt-3">
+                        <div class="col-6">
+                            <a href="#" class="text-light">
+                                <small>Forgot password?</small>
+                            </a>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="#" class="text-light">
+                                <small>Create new account</small>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-</main>
+    </section>
 </template>
-
 <script>
+
 import axios from 'axios'
 import router from '../router'
 import EventBus from './EventBus'
@@ -65,7 +95,7 @@ export default {
   },
 
   methods: {
-    login () {
+    finished () {
       axios.post('/users/login',
         {
           email: this.email,
@@ -83,11 +113,12 @@ export default {
     emitMethod () {
       EventBus.$emit('logged-in', 'loggedin')
     }
+    // email(value) {
+    //     email = value;
+    // },
+    // password(value){
+    //     password = value;
+    // }
   }
 }
 </script>
-
-<style scoped>
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-@import url(../../css/login.css);
-</style>

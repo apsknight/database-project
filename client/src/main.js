@@ -3,11 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Argon from './plugins/argon-kit'
 require('../node_modules/bootstrap/dist/css/bootstrap.css')
 require('../node_modules/bootstrap/dist/js/bootstrap.min.js')
 
 Vue.config.productionTip = false
-
+Vue.use(Argon)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
