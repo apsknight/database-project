@@ -96,19 +96,25 @@ export default {
 
   methods: {
     finished () {
-      axios.post('/users/login',
-        {
-          email: this.email,
-          password: this.password
-        }).then(res => {
-        localStorage.setItem('usertoken', res.data)
-        this.email = ''
-        this.password = ''
-        router.push({ name: 'Profile' })
-      }).catch(err => {
-        console.log(err)
-      })
-      this.emitMethod()
+     if(this.email!="" && this.password!=""){
+        axios.post('/users/login',
+            {
+            email: this.email,
+            password: this.password
+            }).then(res => {
+            localStorage.setItem('usertoken', res.data)
+            this.email = ''
+            this.password = ''
+            router.push({ name: 'Profile' })
+             this.emitMethod()
+        }).catch(err => {
+            alert("The username and / or password is incorrect")
+            //console.log(err)
+        })
+       
+      }else{
+          alert("A username and password must be present")
+      }
     },
     emitMethod () {
       EventBus.$emit('logged-in', 'loggedin')
