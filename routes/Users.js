@@ -5,11 +5,14 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
 const User = require("../models/User")
+const User_details = require("../models/User_Details")
 users.use(cors())
+
 
 process.env.SECRET_KEY = 'secret'
 
 User.sync()
+User_details.sync()
 
 users.post("/register", (req, res) => {
     const today = new Date()
@@ -33,6 +36,7 @@ users.post("/register", (req, res) => {
                     User.create(userData)
                         .then(user => {
                             res.json({ status: user.email + ' registered' })
+                           // res.redirect('localhost:8080/#/register/details')
                         })
                         .catch(err => {
                             res.send('error: ' + err)
@@ -48,6 +52,26 @@ users.post("/register", (req, res) => {
             res.send('error: ' + err)
         })
 })
+
+users.post("/register/details", (req,res) =>{
+    const userData = {
+        Minimun_Donation_Amount: req.body.minimum_donation,
+        Content_Type: req.body.content,
+        Link_To_Content: req.body.link_content,
+        About_You: req.body.about_you
+    }
+    User_details.create(userData).then((user) =>{
+      //  User_details.belongsTo(Users, {targetKey:'id',foreignKey: 'id'});
+        User.findOne({
+            where:{
+                id: user.id
+            }
+        }).then((data) =>{
+            res.json({ status: data.email + ' registered' })
+        })
+    })
+
+});
 
 users.post("/login", (req, res) => {
     User.findOne({
@@ -70,6 +94,24 @@ users.post("/login", (req, res) => {
         .catch(err => {
             res.status(400).json({ error: err })
         })
+})
+
+users.post('/get_details',(req,res) =>{
+    const email = req.body.email
+    User_details.belongsTo(User, {foreignKey: 'id'})
+    User.belongsTo(User_details, {foreignKey: 'id'})
+    User_details.findOne({
+        include:[{
+            model:User,
+            required: true,
+            where:{ 
+                email: email
+            }
+        }]
+    }).then((user)=>{
+        res.send(user.dataValues)
+    })
+
 })
 
 module.exports = users

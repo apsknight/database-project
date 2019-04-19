@@ -118,7 +118,7 @@ export default {
           alert('Email already resgistered')
         }else{
           alert(res.data.status)
-          router.push({ name: 'Login' })
+          router.push({ name: 'User_details' })
         }
       }).catch(err => {
         console.log(err)

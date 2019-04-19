@@ -2,28 +2,24 @@ const Sequelize = require("sequelize")
 const db = require("../database/db")
 
 module.exports = db.sequelize.define(
-    'User_Details',
+    'user_details',
     {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        MDA: {
+        Minimun_Donation_Amount: {
             type: Sequelize.INTEGER
         },
-        last_name: {
+        Content_Type: {
             type: Sequelize.STRING
         },
-        email: {
+        Link_To_Content: {
             type: Sequelize.STRING
         },
-        password: {
+        About_You: {
             type: Sequelize.STRING
-        },
-        created: {
-            type: Sequelize.DATE,
-            defaultValue: Sequelize.NOW
         }
     },
     {
